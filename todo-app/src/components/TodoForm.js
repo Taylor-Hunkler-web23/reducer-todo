@@ -2,7 +2,7 @@ import React, { useState, UserReducer } from 'react';
 import { initialState, reducer } from '../reducers/Reducer.js'
 
 const TodoForm = (props) => {
-    console.log(props,'p')
+    console.log(props, 'p')
 
     const [todo, setTodo] = useState('')
 
@@ -12,14 +12,19 @@ const TodoForm = (props) => {
 
 
     const handleSubmit = event => {
-        event.preventDefault ();
-         props.dispatch ({type: 'ADD_TODO', payload:todo});
+        event.preventDefault();
+        props.dispatch({ type: 'ADD_TODO', payload: todo });
+    }
+
+    const clearCompleted = event => {
+        event.preventDefault();
+        props.dispatch({ type: "TODO_COMPLETED" })
     }
 
     return (
         <div>
 
-            <form onSubmit= {handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <input
                     type="text"
                     value={todo}
@@ -28,6 +33,8 @@ const TodoForm = (props) => {
                     onChange={handleChange}
                 />
                 <button type='submit'>Add</button>
+
+                <button onClick={clearCompleted}>Clear</button>
 
 
 
